@@ -1,4 +1,4 @@
-name: Docker Security Check
+name: Docker Bench Security
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up Docker
@@ -22,7 +22,7 @@ jobs:
     - name: Run Docker Bench Security
       run: |
         docker pull docker/docker-bench-security
-        docker run --rm -it \
+        docker run --rm -T \
           --net host \
           --pid host \
           --cap-add audit_control \
